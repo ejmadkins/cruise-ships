@@ -1,14 +1,11 @@
 // I want a ship to have a starting port.
-function CruiseShip(start) {
-  this.start = start;
+function CruiseShip(port) {
+  console.log(port.name);
+  this.port = port.name;
 }
 
 CruiseShip.prototype.setSail = function () {
-  this.start = null;
+  this.port = null;
 };
-
-const manchesterCruise = new CruiseShip("Manchester");
-console.log(manchesterCruise.start);
-console.log((manchesterCruise.setSail = "london"));
 
 module.exports = CruiseShip;

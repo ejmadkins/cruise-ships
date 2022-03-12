@@ -1,19 +1,19 @@
 const CruiseShip = require("../src/cruise-ship");
+const Port = require("../src/port");
 
 describe("starting point", () => {
+  const port = new Port("Dover");
+  const cruiseShip = new CruiseShip(port);
   it("can be instantiated", () => {
-    const cruiseShip = new CruiseShip("Manchester");
     expect(cruiseShip).toBeInstanceOf(Object);
   });
 
   it("define a starting point for the cuise", () => {
-    const cruiseShip = new CruiseShip("Manchester");
-    expect(cruiseShip.start).toBe("Manchester");
+    expect(cruiseShip.port).toBe("Dover");
   });
 
   it("can set sail", () => {
-    const cruiseShip = new CruiseShip("Manchester");
     cruiseShip.setSail();
-    expect(cruiseShip.start).toBeFalsy();
+    expect(cruiseShip.port).toBeFalsy();
   });
 });
