@@ -1,20 +1,25 @@
+const Port = require("./port");
+
 // I want a ship to have a starting port.
-function CruiseShip(start) {
-  this.start = start;
+function CruiseShip(port) {
+  console.log(port.name);
+  this.port = port.name;
   this.destinationPort = "";
 }
 
 CruiseShip.prototype.setSail = function () {
-  this.start = null;
+  this.port = null;
 };
 
 CruiseShip.prototype.dock = function (destinationPort) {
-  this.destinationPort = destinationPort;
+  this.destinationPort = destinationPort.name;
 };
 
-const cruise = new CruiseShip("Liverpool");
-console.log(cruise.start);
-cruise.dock("St. Martin");
-console.log(cruise.destinationPort);
+// const port = new Port("Liverpool");
+// const destinationPort = new Port("St. Martin");
+// const cruise = new CruiseShip(port);
+// console.log(cruise.port);
+// cruise.dock(destinationPort);
+// console.log(cruise.destinationPort);
 
 module.exports = CruiseShip;
