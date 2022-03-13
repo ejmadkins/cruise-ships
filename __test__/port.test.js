@@ -11,3 +11,22 @@ describe("port", () => {
     expect(port.name).toBe("Dover");
   });
 });
+
+describe("dockedShips", () => {
+  it("addShip", () => {
+    const port = new Port("Dover");
+    const cruiseShip = {};
+    port.addShip(cruiseShip);
+    expect(port.ships).toContain(cruiseShip);
+  });
+
+  it("removeShip", () => {
+    const port = new Port("Dover");
+    const cruiseShipOne = {};
+    const cruiseShipTwo = {};
+    port.addShip(cruiseShipOne);
+    port.addShip(cruiseShipTwo);
+    port.removeShip(cruiseShipTwo);
+    expect(port.ships).toEqual([cruiseShipOne]);
+  });
+});
