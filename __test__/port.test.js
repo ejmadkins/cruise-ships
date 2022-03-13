@@ -1,32 +1,32 @@
 const Port = require("../src/port");
 
 describe("port", () => {
+  let liverpool;
+
+  beforeEach(() => {
+    liverpool = new Port("Liverpool");
+  });
+
   it("can be instantiated", () => {
-    const port = new Port("Dover");
-    expect(port).toBeInstanceOf(Object);
+    expect(liverpool).toBeInstanceOf(Object);
   });
 
   it("define a name for the port", () => {
-    const port = new Port("Dover");
-    expect(port.name).toBe("Dover");
+    expect(liverpool.name).toBe("Liverpool");
   });
-});
 
-describe("dockedShips", () => {
   it("addShip", () => {
-    const port = new Port("Dover");
     const cruiseShip = {};
-    port.addShip(cruiseShip);
-    expect(port.ships).toContain(cruiseShip);
+    liverpool.addShip(cruiseShip);
+    expect(liverpool.ships).toContain(cruiseShip);
   });
 
   it("removeShip", () => {
-    const port = new Port("Dover");
     const cruiseShipOne = {};
     const cruiseShipTwo = {};
-    port.addShip(cruiseShipOne);
-    port.addShip(cruiseShipTwo);
-    port.removeShip(cruiseShipTwo);
-    expect(port.ships).toEqual([cruiseShipOne]);
+    liverpool.addShip(cruiseShipOne);
+    liverpool.addShip(cruiseShipTwo);
+    liverpool.removeShip(cruiseShipTwo);
+    expect(liverpool.ships).toEqual([cruiseShipOne]);
   });
 });
