@@ -4,7 +4,9 @@ describe("Itinerary", () => {
   let itinerary;
 
   beforeEach(() => {
-    itinerary = new Itinerary(["Liverpool", "St. Martin"]);
+    liverpool = jest.fn();
+    stMartin = jest.fn();
+    itinerary = new Itinerary([liverpool, stMartin]);
   });
 
   it("can be instantiated", () => {

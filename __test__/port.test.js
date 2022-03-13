@@ -16,14 +16,14 @@ describe("port", () => {
   });
 
   it("addShip", () => {
-    const cruiseShip = {};
+    const cruiseShip = jest.fn();
     liverpool.addShip(cruiseShip);
     expect(liverpool.ships).toContain(cruiseShip);
   });
 
   it("removeShip", () => {
-    const cruiseShipOne = {};
-    const cruiseShipTwo = {};
+    const cruiseShipOne = jest.fn();
+    const cruiseShipTwo = jest.fn();
     liverpool.addShip(cruiseShipOne);
     liverpool.addShip(cruiseShipTwo);
     liverpool.removeShip(cruiseShipTwo);

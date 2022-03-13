@@ -9,8 +9,19 @@ describe("CruiseShip", () => {
   let cruiseShip;
 
   beforeEach(() => {
-    liverpool = new Port("Liverpool");
-    stMartin = new Port("St. Martin");
+    liverpool = {
+      addShip: jest.fn(),
+      removeShip: jest.fn(),
+      name: "Liverpool",
+      ships: [],
+    };
+    stMartin = {
+      addShip: jest.fn(),
+      removeShip: jest.fn(),
+      name: "St. Martin",
+      ships: [],
+    };
+    console.log(liverpool);
     itinerary = new Itinerary([liverpool, stMartin]);
     cruiseShip = new CruiseShip(itinerary);
   });
