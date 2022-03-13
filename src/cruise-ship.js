@@ -1,24 +1,28 @@
 const Port = require("./port");
+const Itinerary = require("./itinerary");
 
 // I want a ship to have a starting port.
-function CruiseShip(port) {
-  this.port = port;
-  this.destinationPort = "";
+function CruiseShip(itinerary) {
+  this.itinerary = itinerary;
+  this.currentPort = itinerary.ports[0];
+  this.previousPort = null;
 }
 
 CruiseShip.prototype.setSail = function () {
-  this.port = null;
+  const itinerary = this.itinerary;
+  const currentPortIndex = itinerary.ports.indexOf(this.currentPort);
+
+  if (currentPortIndex === itinerary.ports.length - 1) {
+    throw new Error("End of itinerary reached");
+  }
+
+  this.previousPort = this.currentPort;
+  this.currentPort = null;
 };
 
-CruiseShip.prototype.dock = function (destinationPort) {
-  this.destinationPort = destinationPort;
+CruiseShip.prototype.dock = function () {
+  this.currentPort =
+    this.itinerary.ports[this.itinerary.ports.indexOf(this.previousPort) + 1];
 };
-
-// const port = new Port("Liverpool");
-// const destinationPort = new Port("St. Martin");
-// const cruise = new CruiseShip(port);
-// console.log(cruise.port);
-// cruise.dock(destinationPort);
-// console.log(cruise.destinationPort);
 
 module.exports = CruiseShip;

@@ -1,31 +1,57 @@
 const CruiseShip = require("../src/cruise-ship");
 const Port = require("../src/port");
+const Itinerary = require("../src/itinerary");
 
 describe("starting point", () => {
-  const port = new Port("Liverpool");
-  const cruiseShip = new CruiseShip(port);
   it("can be instantiated", () => {
+    const liverpool = new Port("Liverpool");
+    const itinerary = new Itinerary([liverpool]);
+    const cruiseShip = new CruiseShip(itinerary);
     expect(cruiseShip).toBeInstanceOf(Object);
   });
 
   it("define a starting point for the cuise", () => {
-    expect(cruiseShip.port).toBe(port);
+    const liverpool = new Port("Liverpool");
+    const itinerary = new Itinerary([liverpool]);
+    const cruiseShip = new CruiseShip(itinerary);
+    expect(cruiseShip.currentPort).toEqual(liverpool);
   });
+});
 
+describe("setSail", () => {
   it("can set sail", () => {
+    const liverpool = new Port("Liverpool");
+    const stMartin = new Port("St. Martin");
+    const itinerary = new Itinerary([liverpool, stMartin]);
+    const cruiseShip = new CruiseShip(itinerary);
     cruiseShip.setSail();
-    expect(cruiseShip.port).toBeFalsy();
+    expect(cruiseShip.currentPort).toBeFalsy();
+    expect(cruiseShip.previousPort).toBe(liverpool);
   });
 
-  describe("dock", () => {
-    const startingPort = new Port("Liverpool");
-    const destinationPort = new Port("St. Martin");
-    const cruiseShip = new CruiseShip(startingPort);
+  it("can't sail further than its itinerary", () => {
+    const liverpool = new Port("Liverpool");
+    const stMartin = new Port("St. Martin");
+    const itinerary = new Itinerary([liverpool, stMartin]);
+    const cruiseShip = new CruiseShip(itinerary);
 
-    cruiseShip.dock(destinationPort);
+    cruiseShip.setSail();
+    cruiseShip.dock();
 
-    it("define a port to dock at", () => {
-      expect(cruiseShip.destinationPort).toBe(destinationPort);
-    });
+    expect(() => cruiseShip.setSail()).toThrowError("End of itinerary reached");
+  });
+});
+
+describe("dock", () => {
+  const liverpool = new Port("Liverpool");
+  const stMartin = new Port("St. Martin");
+  const itinerary = new Itinerary([liverpool, stMartin]);
+  const cruiseShip = new CruiseShip(itinerary);
+
+  cruiseShip.setSail();
+  cruiseShip.dock();
+
+  it("define a port to dock at", () => {
+    expect(cruiseShip.currentPort).toBe(stMartin);
   });
 });
