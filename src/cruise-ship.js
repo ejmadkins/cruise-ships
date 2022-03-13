@@ -2,8 +2,7 @@ const Port = require("./port");
 
 // I want a ship to have a starting port.
 function CruiseShip(port) {
-  console.log(port.name);
-  this.port = port.name;
+  this.port = port;
   this.destinationPort = "";
 }
 
@@ -12,7 +11,7 @@ CruiseShip.prototype.setSail = function () {
 };
 
 CruiseShip.prototype.dock = function (destinationPort) {
-  this.destinationPort = destinationPort.name;
+  this.destinationPort = destinationPort;
 };
 
 // const port = new Port("Liverpool");

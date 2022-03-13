@@ -9,7 +9,7 @@ describe("starting point", () => {
   });
 
   it("define a starting point for the cuise", () => {
-    expect(cruiseShip.port).toBe("Liverpool");
+    expect(cruiseShip.port).toBe(port);
   });
 
   it("can set sail", () => {
@@ -25,7 +25,7 @@ describe("starting point", () => {
     cruiseShip.dock(destinationPort);
 
     it("define a port to dock at", () => {
-      expect(cruiseShip.destinationPort).toBe("St. Martin");
+      expect(cruiseShip.destinationPort).toBe(destinationPort);
     });
   });
 });
