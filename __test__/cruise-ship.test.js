@@ -21,7 +21,6 @@ describe("CruiseShip", () => {
       name: "St. Martin",
       ships: [],
     };
-    console.log(liverpool);
     itinerary = new Itinerary([liverpool, stMartin]);
     cruiseShip = new CruiseShip(itinerary);
   });
@@ -35,14 +34,14 @@ describe("CruiseShip", () => {
   });
 
   it("gets added to port on instantiation", () => {
-    expect(cruiseShip.currentPort.ships).toEqual([cruiseShip]);
+    expect(liverpool.addShip).toHaveBeenCalledWith(cruiseShip);
   });
 
   it("can set sail", () => {
     cruiseShip.setSail();
     expect(cruiseShip.currentPort).toBeFalsy();
     expect(cruiseShip.previousPort).toBe(liverpool);
-    expect(liverpool.ships).not.toContain(cruiseShip);
+    expect(liverpool.removeShip).toHaveBeenCalledWith(cruiseShip);
   });
 
   it("can't sail further than its itinerary", () => {
@@ -61,6 +60,6 @@ describe("CruiseShip", () => {
     cruiseShip.setSail();
     cruiseShip.dock();
     expect(cruiseShip.currentPort).toBe(stMartin);
-    expect(stMartin.ships).toContain(cruiseShip);
+    expect(stMartin.addShip).toHaveBeenCalledWith(cruiseShip);
   });
 });
