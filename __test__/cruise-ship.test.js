@@ -21,7 +21,11 @@ describe("CruiseShip", () => {
       name: "St. Martin",
       ships: [],
     };
-    itinerary = new Itinerary([liverpool, stMartin]);
+
+    itinerary = {
+      ports: [liverpool, stMartin]
+    };
+  
     cruiseShip = new CruiseShip(itinerary);
   });
 
